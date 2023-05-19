@@ -314,4 +314,5 @@ rotaObjeto()
 
 print(resultado_peso)
 print(vol2)
+print('Testando alteração direto no pycharm')
 
