@@ -211,43 +211,47 @@ except ValueError:
     print("Digite um número válido.")"""
 
 
-peso2 = 0
-vol2 = 0
+
+"""
 print('Bem vindo a Natanael Rosa Translog - Eficiência e qualidade!')
 def dimensaoObjeto ():
     try:
-        while True:
-            alt = int(input('Digite a altura do objeto em CM:>>>'))
-            comp = int(input('Digite o comprimento do objeto em CM:>>>'))
-            larg = int(input('Digite a largura do objeto em CM:>>>'))
-            vol = (alt * comp * larg)
-            print('O volume total do objeto é : {} cm³ . '.format(vol))
-            if vol >= 100000:
-                print('Este volume ultrapassa o nosso limite!')
-                while True :
-                    resp = int(input('''Deseja tentar um novo objeto?
-                                     |1| SIM
-                                     |2| NAO>>>'''))
-                    if resp == 1:
-                        break
-                    elif resp == 2:
-                        print('Foi um prazer atende-lo , Volte Sempre!')
-                        exit()
-                    else:
-                        print('Opção inválida!')
 
-            elif vol < 1000 :
-                vol2 = vol*10
-                break
-            elif vol >=1000 and vol < 10000:
-                vol2 = vol*20
-                break
-            elif vol >= 10000 and vol < 30000:
-                vol2 = vol * 30
-                break
-            elif vol >= 30000 and vol < 100000:
-                vol2 = vol * 50
-                break
+        alt = int(input('Digite a altura do objeto em CM:>>>'))
+        comp = int(input('Digite o comprimento do objeto em CM:>>>'))
+        larg = int(input('Digite a largura do objeto em CM:>>>'))
+        vol = (alt * comp * larg)
+        print('O volume total do objeto é : {} cm³ . '.format(vol))
+        if vol >= 100000:
+            print('Este volume ultrapassa o nosso limite!')
+            while True :
+                resp = int(input('''Deseja tentar um novo objeto?
+                                 |1| SIM
+                                 |2| NAO>>>'''))
+                if resp == 1:
+                    return dimensaoObjeto()
+                elif resp == 2:
+                    print('Foi um prazer atende-lo , Volte Sempre!')
+                    exit()
+                else:
+                    print('Opção inválida!')
+
+        elif vol < 1000 :
+            vol2 = vol*10
+            return vol2
+
+        elif vol >=1000 and vol < 10000:
+            vol2 = vol*20
+            return vol2
+
+        elif vol >= 10000 and vol < 30000:
+            vol2 = vol * 30
+            return vol2
+
+        elif vol >= 30000 and vol < 100000:
+            vol2 = vol * 50
+            return vol2
+
     except ValueError:
         # Tratamento específico para entrada inválida
         print("Você digitou um valor inválido , reinicie o programa!")
@@ -260,25 +264,29 @@ def pesoObjeto ():
             if peso <= 0.1:
                 mult=1
                 peso2 = peso * mult
-
-            elif 0.1 <= peso < 1:
+                return peso2
+                break
+            elif peso > 0.1 and peso < 1:
                 mult=1.5
                 peso2 = peso * mult
-
-            elif 1 <= peso < 1:
+                return peso2
+                break
+            elif peso >= 1 and peso < 10:
                 mult=2
                 peso2 = peso * mult
-
-            elif 10 <= peso < 30:
+                return peso2
+                break
+            elif peso >= 10 and peso < 30:
                 mult=3
                 peso2 = peso * mult
-
+                return peso2
+                break
             elif peso >= 30:
                 print('Peso fora das normas da empresa !')
                 continue
-            break
-            peso2 = peso * mult
-            return peso2
+#            peso2 = peso * mult
+#            return peso2
+#            break
         except ValueError:
             # Tratamento específico para entrada inválida
             print("Você digitou um valor inválido , tente novamente!")
@@ -296,6 +304,7 @@ def rotaObjeto ():
         rota = str(input('Digite a sigla referente à sua rota :>>>'))
         if rota.upper() == 'SR' or rota.upper() == 'RS':
             multirota = 1
+
             break
         elif rota.upper() == 'BS' or rota.upper() == 'SB':
             multirota = 1.2
@@ -305,14 +314,101 @@ def rotaObjeto ():
             break
         elif rota.upper() not in 'BR' and rota.upper() not in 'RB' and rota.upper() not in 'BS' and rota.upper() not in 'SB' and rota.upper() not in 'RS' and rota.upper() not in 'SR':
             print('Sigla não reconhecida, tente novamente!')
+"""
 
+def DimensaoObjeto():
+    while True:
+        try:
+            tamanho = int(input("Qual o comprimento em CM: "))
+            altura = int(input("Qual a altura em CM: "))
+            largura = int(input("Qual a largura em CM: "))
+            break
+        except ValueError:
+            print("Digite apenas números inteiros. Tente novamente.")
 
+    volume = tamanho * altura * largura
+    print("O volume do objeto é:", volume, "cm³")
 
-dimensaoObjeto()
-resultado_peso = pesoObjeto()
-rotaObjeto()
+    if volume < 1000:
+        volume2 = volume * 10
+        return volume2
+    elif 1000 <= volume < 10001:
+        volume2 = volume * 20
+        return volume2
+    elif 10001 <= volume < 30001:
+        volume2 = volume * 30
+        return volume2
+    elif 30001 <= volume < 100000:
+        volume2 = volume * 50
+        return volume2
+    else:
+        while True:
+            resposta = input("Este volume ultrapassa os limites aceitados. Digite 1 para iniciar o programa novamente ou 0 para sair: ")
+            if resposta == '1':
+                return DimensaoObjeto()
+            elif resposta == '0':
+                return None
+            else:
+                print("Opção inválida. Tente novamente.")
 
-print(resultado_peso)
-print(vol2)
-print('Testando alteração direto no pycharm')
+def PesoObjeto():
+    while True:
+        try:
+            peso = float(input("Qual o peso do objeto em kg: "))
+            break
+        except ValueError:
+            print("Digite apenas números. Tente novamente.")
+
+    if peso == 0.1:
+        mult = 1
+    elif 0.1 < peso < 1:
+        mult = 1.5
+    elif 1 <= peso < 10:
+        mult = 2
+    elif 10 <= peso < 30:
+        mult = 3
+    elif peso >= 30:
+        print("O produto ultrapassa os limites de peso aceitos.")
+        return None
+
+    peso2 = peso * mult
+    return peso2
+
+def RotaEscolhida():
+    rotas = {
+        'RS': {'valor': 1},
+        'SR': {'valor': 1},
+        'BS': {'valor': 1.2},
+        'SB': {'valor': 1.2},
+        'BR': {'valor': 1.5},
+        'RB': {'valor': 1.5},
+    }
+
+    while True:
+        escolha = input('''| SIGLA |          ROTA           
+|   RS   |       De Rio de Janeiro até São Paulo      
+|   SR   |       De São Paulo até Rio de Janeiro         
+|   BS   |       De Brasília até São Paulo                  
+|   SB   |       De São Paulo até Brasília              
+|   BR   |       De Brasília até Rio de Janeiro    
+|   RB   |       De Rio de Janeiro até Brasília    
+>>>                 
+''' ).upper()
+        if escolha in rotas:
+            return escolha, rotas[escolha]['valor']
+        else:
+            print("Sigla inválida. Tente novamente.")
+
+volume2 = DimensaoObjeto()
+peso2 = PesoObjeto()
+sigla, valor_rota = RotaEscolhida()
+
+total = volume2 * peso2 * valor_rota
+
+print("Valor total a ser pago pelo cliente:", total)
+print("Muito obrigado!")
+print(peso2)
+print(volume2)
+print(sigla)
+
 
