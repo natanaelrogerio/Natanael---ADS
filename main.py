@@ -315,7 +315,9 @@ def rotaObjeto ():
         elif rota.upper() not in 'BR' and rota.upper() not in 'RB' and rota.upper() not in 'BS' and rota.upper() not in 'SB' and rota.upper() not in 'RS' and rota.upper() not in 'SR':
             print('Sigla não reconhecida, tente novamente!')
 """
-
+"""
+print('Bem vindo a Natanael Rosa Translog - Eficiência e qualidade!')
+print('Vamos calcular o valor do frete desejado:')
 def DimensaoObjeto():
     while True:
         try:
@@ -399,6 +401,7 @@ def RotaEscolhida():
         else:
             print("Sigla inválida. Tente novamente.")
 
+
 volume2 = DimensaoObjeto()
 peso2 = PesoObjeto()
 sigla, valor_rota = RotaEscolhida()
@@ -410,5 +413,85 @@ print("Muito obrigado!")
 print(peso2)
 print(volume2)
 print(sigla)
+"""
+#---------Inicio das variáveis globais -----------
+lista_produto = []
+codigo_produto = 0
+
+#---------Inicio das variáveis globais -----------
+
+#---------Início de cadastrar produtos() -----------
+def cadastrar_produtos(codigo):
+    print('Bem-vindo ao menu de Cadastro de produtos')
+    print('Código do produto : {} '. format(codigo))
+    nome = input('Entre com o NOME do protudo:')
+    fabricante = input('Entre com o FABRICANTE do protudo:')
+    valor = float(input('Entre com PREÇO(R$) do protudo:'))
+    dicionario_produto={'codigo' : codigo , 'nome' : nome , 'fabricante' : fabricante, 'valor' : valor}
+    lista_produto.append(dicionario_produto.copy())
+#---------Início de consultar produtos() -----------
+def consultar_produtos():
+    print('Bem-vindo ao menu de Consulta de produtos')
+    while True:
+
+        menu_consultar = input('''Escolha a opção desejada !           
+    |   1   |       Consultar TODOS os produtos    
+    |   2   |       Consultar produto por Código        
+    |   3   |       Consultar produto por FABRICANTE                 
+    |   4   |       Retornar ao MENU principal              
+    >>>''')
+        if menu_consultar == '1':
+            for produto in lista_produto:
+                print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+                for key , value in produto.items():
+                    print('{}: {} ' .format(key,value))
+                print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+        elif menu_consultar == '2':
+            valor_desejado = input('Entre com o Código desejado:>>>')
+            for produto in lista_produto:
+                if produto['codigo'] == valor_desejado:
+                    print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+                    for key, value in produto.items():
+                        print('{}: {} '.format(key, value))
+                    print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+        elif menu_consultar == '3':
+            print('teste')
+        elif menu_consultar == '4':
+            print('Voltando....')
+            return
+        else:
+            print('Opção inválida . Tente novamente !')
+
+#---------Início de remover produtos() -----------
+def remover_produtos():
+    print('Bem-vindo ao menu de Remover  produtos')
+
+#---------Início de main() -----------
+print('Seja bem_vindo a Mercearia do Natanael Rosa')
+while True:
+
+    menu_principal = input('''Escolha a opção desejada !           
+|   1   |       Cadastrar produto     
+|   2   |       Consultar produto(s)        
+|   3   |       Remover produto                 
+|   4   |       Sair              
+>>>''')
+    if menu_principal == '1':
+        codigo_produto = codigo_produto +1
+        cadastrar_produtos(codigo_produto)
+    elif menu_principal == '2' :
+        consultar_produtos()
+    elif menu_principal == '3' :
+        remover_produtos()
+    elif menu_principal == '4' :
+        break
+    else:
+        printi('Opção inválida . Tente novamente !')
+
+
+
+#---------Fim de main() -----------
+
+
 
 
