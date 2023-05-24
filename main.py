@@ -447,7 +447,7 @@ def consultar_produtos():
                     print('{}: {} ' .format(key,value))
                 print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
         elif menu_consultar == '2':
-            valor_desejado = input('Entre com o Código desejado:>>>')
+            valor_desejado = int(input('Entre com o Código desejado:>>>'))
             for produto in lista_produto:
                 if produto['codigo'] == valor_desejado:
                     print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
@@ -455,7 +455,13 @@ def consultar_produtos():
                         print('{}: {} '.format(key, value))
                     print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
         elif menu_consultar == '3':
-            print('teste')
+            valor_desejado = input('Entre com o nome do FABRICANTE:>>>')
+            for produto in lista_produto:
+                if produto['fabricante'] == valor_desejado:
+                    print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+                    for key, value in produto.items():
+                        print('{}: {} '.format(key, value))
+                    print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
         elif menu_consultar == '4':
             print('Voltando....')
             return
@@ -465,6 +471,15 @@ def consultar_produtos():
 #---------Início de remover produtos() -----------
 def remover_produtos():
     print('Bem-vindo ao menu de Remover  produtos')
+    valor_desejado = int(input('Entre com o CÓDIGO do produto a ser removido'))
+    for produto in lista_produto:
+        if produto['codigo'] == valor_desejado:
+           lista_produto.remove(produto)
+           print('Produto removido com sucesso.')
+        else:
+            print('Produto não encontrado , tente novamente')
+            return
+
 
 #---------Início de main() -----------
 print('Seja bem_vindo a Mercearia do Natanael Rosa')
@@ -486,7 +501,7 @@ while True:
     elif menu_principal == '4' :
         break
     else:
-        printi('Opção inválida . Tente novamente !')
+        print('Opção inválida . Tente novamente !')
 
 
 
